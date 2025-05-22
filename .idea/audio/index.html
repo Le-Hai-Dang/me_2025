@@ -8,14 +8,23 @@
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
 </head>
 <body>
-    <!-- Trang 1: Màn hình chào mừng -->
+    <!-- Trang 1: Màn hình chào mừng với animation ấn tượng -->
     <div class="landing-page" id="landing-page">
+        <div class="animation-container">
+            <div class="celebration-text">Chúc Mừng Sinh Nhật</div>
+            <div class="sparkling-stars"></div>
+            <div class="balloon balloon1"></div>
+            <div class="balloon balloon2"></div>
+            <div class="balloon balloon3"></div>
+            <div class="confetti-container" id="confetti-container"></div>
+        </div>
+
         <h1 class="main-heading">CHÚC MỪNG SINH NHẬT MẸ YÊU!</h1>
         <div class="gift-container">
-            <div class="gift-box" id="gift-box">
-                <div class="gift-lid"></div>
-                <div class="gift-base"></div>
-                <div class="gift-ribbon"></div>
+            <div class="gift-box-square" id="gift-box">
+                <div class="gift-lid-square"></div>
+                <div class="gift-base-square"></div>
+                <div class="gift-ribbon-square"></div>
             </div>
             <p class="gift-message">Mẹ hãy nhấp vào hộp quà để nhận điều bất ngờ nhé!</p>
         </div>
@@ -23,44 +32,108 @@
 
     <!-- Trang 2: Nội dung chính -->
     <div class="main-content" id="main-content">
-        <div class="hearts-container" id="hearts-container"></div>
+        <div class="cakes-container" id="cakes-container"></div>
         
         <h2 class="wishes-heading">❤️ Gửi Mẹ những lời chúc tốt đẹp nhất! ❤️</h2>
         
-        <div class="slideshow-container">
-            <div class="slideshow-images">
-                <!-- Ảnh sẽ được thêm vào bằng JavaScript -->
-            </div>
-            
-            <div class="slideshow-controls">
-                <button class="prev-btn" id="prev-btn">&lt;</button>
-                <button class="next-btn" id="next-btn">&gt;</button>
-            </div>
-            
-            <div class="image-caption" id="image-caption">
-                <!-- Chú thích sẽ được thêm vào bằng JavaScript -->
+        <!-- Phần 1: Kỷ niệm đầu tiên -->
+        <div class="memory-section">
+            <div class="memory-image">
+                <img src="images/1.jpg" alt="Kỷ niệm 1" class="zoomable-img">
             </div>
         </div>
         
+        <!-- Phần 2: Kỷ niệm thứ hai -->
+        <div class="memory-section reverse">
+            <div class="memory-image">
+                <img src="images/2.jpg" alt="Kỷ niệm 2" class="zoomable-img">
+            </div>
+        </div>
+        
+        <!-- Phần 3: Kỷ niệm thứ ba -->
+        <div class="memory-section">
+            <div class="memory-image">
+                <img src="images/3.jpg" alt="Kỷ niệm 3" class="zoomable-img">
+            </div>
+        </div>
+        
+        <!-- Phần 4: Kỷ niệm thứ tư -->
+        <div class="memory-section reverse">
+            <div class="memory-image">
+                <img src="images/4.jpg" alt="Kỷ niệm 4" class="zoomable-img">
+            </div>
+        </div>
+        
+        <!-- Phần 5: Kỷ niệm thứ năm -->
+        <div class="memory-section">
+            <div class="memory-image">
+                <img src="images/5.jpg" alt="Kỷ niệm 5" class="zoomable-img">
+            </div>
+        </div>
+        
+        <!-- Phần 6: Kỷ niệm thứ sáu -->
+        <div class="memory-section reverse">
+            <div class="memory-image">
+                <img src="images/6.jpg" alt="Kỷ niệm 6" class="zoomable-img">
+            </div>
+        </div>
+        
+        <!-- Phần 7: Kỷ niệm thứ bảy -->
+        <div class="memory-section">
+            <div class="memory-image">
+                <img src="images/7.jpg" alt="Kỷ niệm 7" class="zoomable-img">
+            </div>
+        </div>
+        
+        <!-- Phần 8: Kỷ niệm thứ tám -->
+        <div class="memory-section reverse">
+            <div class="memory-image">
+                <img src="images/8.jpg" alt="Kỷ niệm 8" class="zoomable-img">
+            </div>
+        </div>
+        
+        <!-- Phần 9: Kỷ niệm thứ chín -->
+        <div class="memory-section">
+            <div class="memory-image">
+                <img src="images/9.jpg" alt="Kỷ niệm 9" class="zoomable-img">
+            </div>
+        </div>
+        
+        <!-- Phần 10: Kỷ niệm thứ mười -->
+        <div class="memory-section reverse">
+            <div class="memory-image">
+                <img src="images/10.jpg" alt="Kỷ niệm 10" class="zoomable-img">
+            </div>
+        </div>
+        
+        <!-- Phần thư: Không có ảnh, chỉ có văn bản -->
         <div class="special-message">
             <h3>Mẹ kính yêu của con!</h3>
             <p>
-                Nhân ngày đặc biệt này, con muốn gửi đến Mẹ ngàn lời yêu thương và những lời chúc tốt đẹp nhất. 
+                Nhân ngày sinh nhật của Mẹ, con muốn gửi đến Mẹ ngàn lời yêu thương và những lời chúc tốt đẹp nhất. 
                 Con mong Mẹ sẽ luôn mạnh khỏe, vui vẻ, hạnh phúc và mãi là điểm tựa vững chắc cho chúng con.
             </p>
             <p>
-                [Chỗ này con sẽ viết thêm những lời chúc cá nhân của mình]
+                Mẹ không chỉ là người Mẹ tuyệt vời của con mà còn là một nhà giáo tận tâm, người đã truyền cảm hứng 
+                và kiến thức cho biết bao thế hệ học trò. Con luôn tự hào về Mẹ!
+            </p>
+            <p>
+                Con chúc Mẹ có một ngày sinh nhật thật nhiều niềm vui và tiếng cười, luôn giữ được ngọn lửa 
+                nhiệt huyết với nghề và có thật nhiều học trò ngoan, yêu quý Mẹ. Cảm ơn Mẹ đã luôn là tấm 
+                gương sáng cho con noi theo. Con mong Mẹ luôn vui tươi, yêu đời và gặt hái thêm nhiều thành 
+                công trong sự nghiệp trồng người.
             </p>
             <p class="signature">
                 Con yêu Mẹ rất nhiều!<br>
-                [Tên của bạn]
+                Con trai của Mẹ
             </p>
         </div>
-        
-        <div class="audio-control">
-            <button id="music-toggle" class="music-btn">
-                <span class="music-icon">🔊</span>
-            </button>
+    </div>
+
+    <!-- Overlay cho hiệu ứng zoom ảnh -->
+    <div class="zoom-overlay" id="zoom-overlay">
+        <div class="zoomed-img-container">
+            <img src="" alt="Ảnh phóng to" id="zoomed-img">
         </div>
     </div>
 
