@@ -3,6 +3,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Khai báo các phần tử DOM
     const landingPage = document.getElementById('landing-page');
     const mainContent = document.getElementById('main-content');
+    const letterPage = document.getElementById('letter-page');
     const giftBox = document.getElementById('gift-box');
     const backgroundMusic = document.getElementById('background-music');
     const cakesContainer = document.getElementById('cakes-container');
@@ -10,6 +11,8 @@ document.addEventListener('DOMContentLoaded', function() {
     const zoomableImages = document.querySelectorAll('.zoomable-img');
     const zoomOverlay = document.getElementById('zoom-overlay');
     const zoomedImg = document.getElementById('zoomed-img');
+    const goToLetterBtn = document.getElementById('go-to-letter');
+    const goBackToPhotosBtn = document.getElementById('go-back-to-photos');
     
     // Cài đặt trạng thái âm nhạc
     let isMusicPlaying = false;
@@ -93,10 +96,17 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
     
+    // Loại bỏ hoàn toàn xử lý animation cho bức thư
+    function animateLetterContent(container) {
+        // Không làm gì cả, bỏ qua animation
+    }
+    
     // Hiệu ứng khi scroll để làm cho các phần hiển thị lần lượt
     function addScrollEffects() {
         const memorySections = document.querySelectorAll('.memory-section');
         const specialMessage = document.querySelector('.special-message');
+        
+        // Không xử lý animation cho special-message nữa
         
         // Cải thiện hiệu suất bằng cách giảm số lần gọi callback
         let scrollTimeout;
@@ -107,14 +117,10 @@ document.addEventListener('DOMContentLoaded', function() {
                 if (entry.isIntersecting) {
                     // Sử dụng requestAnimationFrame để đồng bộ với chu kỳ render
                     requestAnimationFrame(() => {
-                        entry.target.style.opacity = '1';
-                        entry.target.style.transform = 'translateY(0)';
-                        
-                        // Nếu là phần thư, thêm hiệu ứng chữ chạy
-                        if (entry.target.classList.contains('special-message')) {
-                            animateLetterContent(entry.target);
-                            // Ngừng theo dõi phần thư sau khi đã xử lý animation
-                            observer.unobserve(entry.target);
+                        // Chỉ áp dụng cho memory-section, không áp dụng cho special-message
+                        if (!entry.target.classList.contains('special-message')) {
+                            entry.target.style.opacity = '1';
+                            entry.target.style.transform = 'translateY(0)';
                         }
                     });
                 }
@@ -123,7 +129,12 @@ document.addEventListener('DOMContentLoaded', function() {
         };
         
         const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => pendingEntries.add(entry));
+            entries.forEach(entry => {
+                // Chỉ xử lý memory-section, không xử lý special-message
+                if (!entry.target.classList.contains('special-message')) {
+                    pendingEntries.add(entry);
+                }
+            });
             
             // Gom nhóm các thay đổi và xử lý một lần
             clearTimeout(scrollTimeout);
@@ -137,60 +148,29 @@ document.addEventListener('DOMContentLoaded', function() {
         const prepareElements = elements => {
             const fragment = document.createDocumentFragment();
             elements.forEach(section => {
-                const clone = section.cloneNode(false);
-                clone.style.opacity = '0';
-                clone.style.transform = 'translateY(30px)';
-                clone.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
-                fragment.appendChild(clone);
+                // Không áp dụng cho special-message
+                if (!section.classList.contains('special-message')) {
+                    const clone = section.cloneNode(false);
+                    clone.style.opacity = '0';
+                    clone.style.transform = 'translateY(30px)';
+                    clone.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+                    fragment.appendChild(clone);
+                }
             });
             requestAnimationFrame(() => {
                 memorySections.forEach((section, i) => {
-                    section.style.opacity = '0';
-                    section.style.transform = 'translateY(30px)';
-                    section.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
-                    observer.observe(section);
+                    // Không áp dụng cho special-message
+                    if (!section.classList.contains('special-message')) {
+                        section.style.opacity = '0';
+                        section.style.transform = 'translateY(30px)';
+                        section.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+                        observer.observe(section);
+                    }
                 });
-                
-                if (specialMessage) {
-                    specialMessage.style.opacity = '0';
-                    specialMessage.style.transform = 'translateY(30px)';
-                    specialMessage.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
-                    observer.observe(specialMessage);
-                }
             });
         };
         
         prepareElements(memorySections);
-    }
-    
-    // Hiệu ứng animation cho chữ trong phần thư
-    function animateLetterContent(container) {
-        // Lấy tất cả các phần tử con (h3, p) 
-        const elements = container.querySelectorAll('h3, p');
-        
-        // Thời gian delay giữa các phần tử
-        let delay = 0;
-        
-        elements.forEach(element => {
-            // Thêm class để áp dụng animation
-            element.classList.add('letter-animation');
-            element.style.animationDelay = `${delay}s`;
-            
-            // Tăng delay cho phần tử tiếp theo (giảm delay xuống)
-            delay += 0.2;
-            
-            // Loại bỏ animation sau khi hoàn thành để tránh lag
-            const animationDuration = 0.8; // Thời gian của animation (giống như trong CSS)
-            const cleanupTime = (delay + animationDuration) * 1000;
-            
-            setTimeout(() => {
-                // Loại bỏ class animation và giữ lại trạng thái cuối
-                element.classList.remove('letter-animation');
-                element.style.opacity = 1;
-                element.style.transform = 'translateY(0)';
-                element.style.animationDelay = '';
-            }, cleanupTime);
-        });
     }
     
     // Hiệu ứng zoom ảnh
@@ -329,6 +309,80 @@ document.addEventListener('DOMContentLoaded', function() {
                         setInterval(createCakes, 30000);
                     }, 100);
                 }, 1000);
+            }, 200);
+        }, 300);
+    });
+    
+    // Xử lý chuyển trang sang trang thư
+    goToLetterBtn.addEventListener('click', function() {
+        // Tạo hiệu ứng chuyển trang
+        const flash = document.createElement('div');
+        flash.className = 'page-transition-flash';
+        document.body.appendChild(flash);
+        
+        setTimeout(() => {
+            flash.style.opacity = '1';
+            
+            setTimeout(() => {
+                // Ẩn trang ảnh
+                mainContent.style.opacity = '0';
+                mainContent.style.transform = 'scale(0.9) translateY(-50px)';
+                
+                setTimeout(() => {
+                    mainContent.style.display = 'none';
+                    flash.style.opacity = '0';
+                    
+                    // Hiển thị trang thư
+                    letterPage.style.display = 'flex';
+                    letterPage.style.transform = 'scale(0.9) translateY(50px)';
+                    
+                    setTimeout(() => {
+                        letterPage.style.opacity = '1';
+                        letterPage.style.transform = 'scale(1) translateY(0)';
+                        
+                        // Xóa hiệu ứng flash
+                        setTimeout(() => {
+                            flash.remove();
+                        }, 500);
+                    }, 100);
+                }, 800);
+            }, 200);
+        }, 300);
+    });
+    
+    // Xử lý quay lại trang ảnh từ trang thư
+    goBackToPhotosBtn.addEventListener('click', function() {
+        // Tạo hiệu ứng chuyển trang
+        const flash = document.createElement('div');
+        flash.className = 'page-transition-flash';
+        document.body.appendChild(flash);
+        
+        setTimeout(() => {
+            flash.style.opacity = '1';
+            
+            setTimeout(() => {
+                // Ẩn trang thư
+                letterPage.style.opacity = '0';
+                letterPage.style.transform = 'scale(0.9) translateY(-50px)';
+                
+                setTimeout(() => {
+                    letterPage.style.display = 'none';
+                    flash.style.opacity = '0';
+                    
+                    // Hiển thị lại trang ảnh
+                    mainContent.style.display = 'block';
+                    mainContent.style.transform = 'scale(0.9) translateY(50px)';
+                    
+                    setTimeout(() => {
+                        mainContent.style.opacity = '1';
+                        mainContent.style.transform = 'scale(1) translateY(0)';
+                        
+                        // Xóa hiệu ứng flash
+                        setTimeout(() => {
+                            flash.remove();
+                        }, 500);
+                    }, 100);
+                }, 800);
             }, 200);
         }, 300);
     });
