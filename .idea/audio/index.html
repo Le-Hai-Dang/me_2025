@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chúc Mừng Sinh Nhật Mẹ!</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Trang 1: Màn hình chào mừng -->
+    <div class="landing-page" id="landing-page">
+        <h1 class="main-heading">CHÚC MỪNG SINH NHẬT MẸ YÊU!</h1>
+        <div class="gift-container">
+            <div class="gift-box" id="gift-box">
+                <div class="gift-lid"></div>
+                <div class="gift-base"></div>
+                <div class="gift-ribbon"></div>
+            </div>
+            <p class="gift-message">Mẹ hãy nhấp vào hộp quà để nhận điều bất ngờ nhé!</p>
+        </div>
+    </div>
+
+    <!-- Trang 2: Nội dung chính -->
+    <div class="main-content" id="main-content">
+        <div class="hearts-container" id="hearts-container"></div>
+        
+        <h2 class="wishes-heading">❤️ Gửi Mẹ những lời chúc tốt đẹp nhất! ❤️</h2>
+        
+        <div class="slideshow-container">
+            <div class="slideshow-images">
+                <!-- Ảnh sẽ được thêm vào bằng JavaScript -->
+            </div>
+            
+            <div class="slideshow-controls">
+                <button class="prev-btn" id="prev-btn">&lt;</button>
+                <button class="next-btn" id="next-btn">&gt;</button>
+            </div>
+            
+            <div class="image-caption" id="image-caption">
+                <!-- Chú thích sẽ được thêm vào bằng JavaScript -->
+            </div>
+        </div>
+        
+        <div class="special-message">
+            <h3>Mẹ kính yêu của con!</h3>
+            <p>
+                Nhân ngày đặc biệt này, con muốn gửi đến Mẹ ngàn lời yêu thương và những lời chúc tốt đẹp nhất. 
+                Con mong Mẹ sẽ luôn mạnh khỏe, vui vẻ, hạnh phúc và mãi là điểm tựa vững chắc cho chúng con.
+            </p>
+            <p>
+                [Chỗ này con sẽ viết thêm những lời chúc cá nhân của mình]
+            </p>
+            <p class="signature">
+                Con yêu Mẹ rất nhiều!<br>
+                [Tên của bạn]
+            </p>
+        </div>
+        
+        <div class="audio-control">
+            <button id="music-toggle" class="music-btn">
+                <span class="music-icon">🔊</span>
+            </button>
+        </div>
+    </div>
+
+    <audio id="background-music" loop>
+        <source src="audio/background_music.mp3" type="audio/mp3">
+        Trình duyệt của bạn không hỗ trợ phát âm thanh.
+    </audio>
+
+    <script src="js/script.js"></script>
+</body>
+</html> 

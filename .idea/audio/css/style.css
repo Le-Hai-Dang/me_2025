@@ -1,0 +1,367 @@
+/* CSS Reset và Cài đặt chung */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    background: linear-gradient(to bottom right, #fff5f7, #fdf2f8, #fae8ff);
+    color: #333;
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+/* Trang 1: Màn hình chào mừng */
+.landing-page {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    text-align: center;
+    transition: opacity 1s ease-out;
+}
+
+.main-heading {
+    font-family: 'Dancing Script', cursive;
+    font-size: 3.5rem;
+    color: #d53f8c;
+    margin-bottom: 3rem;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    animation: fadeInDown 1.5s ease-out forwards;
+}
+
+.gift-container {
+    margin-top: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    animation: fadeIn 2s ease-out 0.5s forwards;
+    opacity: 0;
+}
+
+.gift-box {
+    width: 150px;
+    height: 150px;
+    position: relative;
+    cursor: pointer;
+    transition: transform 0.3s;
+}
+
+.gift-box:hover {
+    transform: scale(1.05);
+}
+
+.gift-base {
+    position: absolute;
+    width: 100%;
+    height: 80%;
+    bottom: 0;
+    background-color: #f472b6;
+    border-radius: 5px;
+}
+
+.gift-lid {
+    position: absolute;
+    width: 120%;
+    height: 30px;
+    left: -10%;
+    top: -10px;
+    background-color: #f472b6;
+    border-radius: 5px;
+    z-index: 2;
+}
+
+.gift-ribbon {
+    position: absolute;
+    width: 30px;
+    height: 120%;
+    top: -15%;
+    left: calc(50% - 15px);
+    background-color: #9f7aea;
+    border-radius: 5px;
+    z-index: 1;
+}
+
+.gift-ribbon::before {
+    content: '';
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    background-color: #9f7aea;
+    border-radius: 50%;
+    top: -20px;
+    left: -5px;
+}
+
+.gift-message {
+    margin-top: 2rem;
+    font-size: 1.2rem;
+    color: #805ad5;
+}
+
+/* Trang 2: Nội dung chính */
+.main-content {
+    display: none;
+    padding: 3rem 1rem;
+    max-width: 1000px;
+    margin: 0 auto;
+    opacity: 0;
+    transition: opacity 1s ease-in;
+}
+
+.wishes-heading {
+    text-align: center;
+    font-family: 'Dancing Script', cursive;
+    font-size: 2.5rem;
+    color: #d53f8c;
+    margin-bottom: 2rem;
+    animation: pulse 2s infinite;
+}
+
+/* Slideshow */
+.slideshow-container {
+    width: 100%;
+    max-width: 650px;
+    margin: 0 auto 3rem;
+    position: relative;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.slideshow-images {
+    width: 100%;
+    height: 400px;
+    position: relative;
+    background-color: #f3f4f6;
+}
+
+.slide {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.slide.active {
+    opacity: 1;
+}
+
+.slide img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+}
+
+.slideshow-controls {
+    display: flex;
+    justify-content: space-between;
+    position: absolute;
+    width: 100%;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 1;
+}
+
+.prev-btn, .next-btn {
+    background: rgba(0, 0, 0, 0.3);
+    color: white;
+    border: none;
+    width: 40px;
+    height: 40px;
+    font-size: 1.5rem;
+    cursor: pointer;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 10px;
+    transition: background-color 0.3s;
+}
+
+.prev-btn:hover, .next-btn:hover {
+    background: rgba(0, 0, 0, 0.6);
+}
+
+.image-caption {
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 15px;
+    text-align: center;
+    font-style: italic;
+    color: #555;
+}
+
+/* Thông điệp đặc biệt */
+.special-message {
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 10px;
+    padding: 2rem;
+    margin: 2rem auto;
+    max-width: 800px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    text-align: center;
+}
+
+.special-message h3 {
+    font-family: 'Dancing Script', cursive;
+    font-size: 2rem;
+    color: #d53f8c;
+    margin-bottom: 1.5rem;
+}
+
+.special-message p {
+    margin-bottom: 1.5rem;
+    line-height: 1.6;
+    font-size: 1.1rem;
+}
+
+.signature {
+    font-family: 'Dancing Script', cursive;
+    font-size: 1.5rem;
+    color: #d53f8c;
+    margin-top: 2rem;
+}
+
+/* Hiệu ứng trái tim rơi */
+.heart {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background-color: #f472b6;
+    transform: rotate(45deg);
+    opacity: 0.8;
+    animation: falling 5s linear;
+}
+
+.heart::before, .heart::after {
+    content: '';
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: #f472b6;
+}
+
+.heart::before {
+    top: -10px;
+    left: 0;
+}
+
+.heart::after {
+    top: 0;
+    left: -10px;
+}
+
+/* Điều khiển âm nhạc */
+.audio-control {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 100;
+}
+
+.music-btn {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: #9f7aea;
+    color: white;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s;
+}
+
+.music-btn:hover {
+    transform: scale(1.1);
+}
+
+/* Hoạt ảnh */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+@keyframes falling {
+    0% {
+        transform: translateY(-100vh) translateX(0) rotate(45deg);
+    }
+    100% {
+        transform: translateY(100vh) translateX(calc(20px + 100px * var(--random))) rotate(45deg);
+        opacity: 0;
+    }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .main-heading {
+        font-size: 2.5rem;
+    }
+    
+    .wishes-heading {
+        font-size: 2rem;
+    }
+    
+    .slideshow-images {
+        height: 300px;
+    }
+    
+    .special-message {
+        padding: 1.5rem;
+    }
+    
+    .special-message h3 {
+        font-size: 1.8rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .main-heading {
+        font-size: 2rem;
+    }
+    
+    .wishes-heading {
+        font-size: 1.8rem;
+    }
+    
+    .slideshow-images {
+        height: 250px;
+    }
+    
+    .gift-box {
+        width: 120px;
+        height: 120px;
+    }
+    
+    .special-message h3 {
+        font-size: 1.5rem;
+    }
+} 
